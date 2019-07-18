@@ -3,6 +3,7 @@ package com.jc.dogs.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.jc.dogs.R
 import com.jc.dogs.model.DogBreed
@@ -27,10 +28,11 @@ class DogsListAdapter(val dogsList: ArrayList<DogBreed>) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
         holder.view.name.text = dogsList[position].dogBreed
         holder.view.lifespan.text = dogsList[position].lifespan
+        holder.view.setOnClickListener {
+            Navigation.findNavController(it).navigate(ListFragmentDirections.actionDetailFragment())
+        }
     }
 
-    class DogViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
-
-    }
+    class DogViewHolder(var view: View) : RecyclerView.ViewHolder(view)
 
 }
